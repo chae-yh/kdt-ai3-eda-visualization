@@ -28,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">EDAs</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Visualizations</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contact</a></li>
                     </ul>
@@ -56,7 +56,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">EDAs</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Visualizations </h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -189,7 +189,7 @@
                             </div>
                             <!-- Submit success message-->
                             <!---->
-                            <!-- This is what your users will see when the form-->
+                            <!-- This is what your users will see when the -->
                             <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
@@ -301,7 +301,12 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualizations/20220107_regular_season_df_hist.png' %}" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">2루타, 3루타, 사구 등의 데이터 분포가 매우 제한적이며, 연도(year)데이터를 봤을 때 과거 데이터는 매우 적음
+
+                                        preseason_df.hist(figsize=(10, 9))
+                                        plt.tight_layout()
+                                        
+                                        plt.show()</p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -333,7 +338,8 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualizations/20220107_OPS_median_by_year.png' %}" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4"> OPS 상세 그래프
+                                        # 2000년 이후로 변동이 줄어듦 </p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -363,9 +369,20 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualizations/assets/img/visualization/20220107_OPS_boxplot_by_year.png' %}" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualization/20220107_OPS_boxplot_by_year.png' %}" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">
+                                        plt.figure(figsize=(15, 6))
+plt.subplot(1, 2, 1)
+g = sns.boxplot(x='year', y='OPS', data=regular_season_df, showfliers=False)
+g.set_title('OPS Boxplot by Year', size=20)
+g.set_xticklabels(g.get_xticklabels(), rotation=90)
+plt.subplot(1, 2, 2)
+plt.plot(regular_season_df.groupby('year')['OPS'].median())
+plt.title('OPS Median by Year', size=20)
+
+plt.show()
+                                    </p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -397,7 +414,11 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualizations/20220107_weight_height_SLG.png' %}" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">
+                                        # 몸무게 / 키 계산
+                                        # 정규시즌과 프리시즌의 상관관계 계산
+                                        # 데이터가 선형을 보이지 않고 고르게 분포하고 있음 -> 키, 몸무게는 장타율, 출루율과 연관성이 없음
+                                    </p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
@@ -429,7 +450,26 @@
                                     <!-- Portfolio Modal - Image-->
                                     <img class="img-fluid rounded mb-5" src="{% static 'assets/img/visualizations/20220107_weight_per_height_OBP.png' %}" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                                    <p class="mb-4">
+                                        regular_season_df['weight_per_height'] = regular_season_df['weight'] / regular_season_df['height']
+                                        plt.figure(figsize=(15, 5))
+                                        plt.subplot(1, 2, 1)
+                                        
+                                        correlation = regular_season_df['weight_per_height'].corr(regular_season_df['OBP'])
+                                        sns.scatterplot(regular_season_df['weight_per_height'], regular_season_df['OBP'])
+                                        plt.title('weight / height, OBP correlation : ' + str(np.round(correlation, 2)), fontsize=15)
+                                        plt.ylabel('regular season OBP', fontsize=12)
+                                        plt.xlabel('weight / height', fontsize=12)
+                                        plt.subplot(1, 2, 2)
+                                        
+                                        correlation = regular_season_df['weight_per_height'].corr(regular_season_df['SLG'])
+                                        sns.scatterplot(regular_season_df['weight_per_height'], regular_season_df['SLG'])
+                                        plt.title('weight / height, SLG correlation : ' + str(np.round(correlation, 2)), fontsize=15)
+                                        plt.ylabel('regular season SLG', fontsize=12)
+                                        plt.xlabel('weight / height', fontsize=12)
+                                        
+                                        plt.show()                                        
+                                    </p>
                                     <button class="btn btn-primary" href="#!" data-bs-dismiss="modal">
                                         <i class="fas fa-times fa-fw"></i>
                                         Close Window
